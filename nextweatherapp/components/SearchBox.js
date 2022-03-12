@@ -27,7 +27,7 @@ export default function SearchBox({ placeholder }) {
     // after 3 letters provides list of 5 possible matches
     if (value.length > 3) {
       for (let city of cities) {
-        if (matchingCities.length >= 10) {
+        if (matchingCities.length >= 20) {
           break;
         }
 
