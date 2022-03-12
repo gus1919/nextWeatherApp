@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Next Weather App</title>
+        <title>Oeters Next Weather App</title>
       </Head>
 
       <div className="home">
