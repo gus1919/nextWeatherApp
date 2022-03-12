@@ -1,9 +1,12 @@
 import React from "react";
 import cities from "../../lib/city.list.json";
-import Head from "next/head";
 import TodaysWeather from "../../components/TodaysWeather";
-import moment from "moment-timezone";
 import HourlyWeather from "../../components/HourlyWeather";
+import WeeklyWeather from "../../components/WeeklyWeather";
+import Head from "next/head";
+import moment from "moment-timezone";
+import SearchBox from "../../components/SearchBox";
+import Link from "next/link";
 
 export async function getServerSideProps(context) {
   const city = getCity(context.params.city);
@@ -26,13 +29,15 @@ export async function getServerSideProps(context) {
     };
   }
 
+  const weeklyWeather = data.daily;
+
   return {
     props: {
       city: city,
       timezone: data.timezone,
       currentWeather: data.current,
-      dailyWeather: data.daily,
       hourlyWeather: getHourlyWeather(data.hourly, data.timezone),
+      weeklyWeather: weeklyWeather,
     },
   };
 }
@@ -69,10 +74,11 @@ const getHourlyWeather = (hourlyData, timezone) => {
 };
 
 export default function City({
-  hourlyWeather,
-  currentWeather,
-  dailyWeather,
   city,
+  weather,
+  currentWeather,
+  hourlyWeather,
+  weeklyWeather,
   timezone,
 }) {
   // console.log(hourlyWeather);
@@ -83,12 +89,17 @@ export default function City({
       </Head>
       <div className="page-wrapper">
         <div className="container">
+          <Link href="/">
+            <a className="back-link">&larr; Home</a>
+          </Link>
+          <SearchBox placeholder="Search for another location..." />
           <TodaysWeather
             city={city}
-            weather={dailyWeather[0]}
+            weather={weeklyWeather[0]}
             timezone={timezone}
           />
           <HourlyWeather hourlyWeather={hourlyWeather} timezone={timezone} />
+          <WeeklyWeather weeklyWeather={weeklyWeather} timezone={timezone} />
         </div>
       </div>
     </div>
