@@ -32,6 +32,9 @@ This app was created using nextjs and allows a user to search for cities to gath
 
 > Here is a link to the github repository: https://github.com/gus1919/nextWeatherApp
 
+![nextweatherapp](https://user-images.githubusercontent.com/86876335/158039385-ac12931e-07f7-43e5-aabb-9bce87ae4013.gif)
+
+
 ## Contributors
 
 > Primary Contributor: Justin Oeters
